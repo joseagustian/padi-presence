@@ -58,7 +58,7 @@ class AnnouncementWidget extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           Text(
-            'Rabu, 8 November 2023',
+              'Selasa, 4 Januari 2024',
             style: TextStyle(
               fontSize: 12,
               color: Colors.blueGrey.shade700

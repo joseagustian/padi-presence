@@ -9,6 +9,8 @@ import 'package:padi/modules/shared/presenters/alert_dialog/messenger_alert_dial
 import 'package:padi/modules/shared/presenters/date_and_time/date_and_time_provider.dart';
 import 'package:padi/modules/shared/presenters/location/user/user_location_state_provider.dart';
 
+import '../../../../../core/utils/shared_preferences.dart';
+
 void checkOutValidator(
     BuildContext context,
     String? attendanceId,
@@ -20,9 +22,12 @@ void checkOutValidator(
     void Function() onCheckOutSuccess,
 ) {
 
+  SharedPreferencesUtils prefs = SharedPreferencesUtils();
+
   final coordinates = userLocationStateNotifier.getUserCoordinates();
 
   String timestamp = dateTimeProvider.getTimestamp();
+  String localTime = dateTimeProvider.getLocalTime();
 
   final lat = coordinates['latitude'].toString();
   final long = coordinates['longitude'].toString();
@@ -98,6 +103,7 @@ void checkOutValidator(
     Navigator.of(context, rootNavigator: true).pop();
     bool success = true;
 
+    prefs.savePrefs(PrefsKey.attendanceCheckOutTime, localTime);
 
     onCheckOutSuccess();
 

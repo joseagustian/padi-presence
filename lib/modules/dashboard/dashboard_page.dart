@@ -4,6 +4,7 @@ import 'package:padi/core/utils/app_logger.dart';
 import 'package:padi/modules/dashboard/presenters/widgets/announcement_widget.dart';
 import 'package:padi/modules/dashboard/presenters/widgets/dashboard_appbar.dart';
 import 'package:padi/modules/dashboard/presenters/widgets/today_activity_widget.dart';
+import 'package:padi/modules/dashboard/today_activity_provider.dart';
 import 'package:padi/modules/shared/presenters/employee_data_card/employee_data_card.dart';
 
 import 'presenters/widgets/monthly_activity_summary.dart';
@@ -26,6 +27,7 @@ class DashboardPage extends ConsumerWidget {
                 color: Colors.blueGrey.shade100,
                 onRefresh: () async {
                   ref.refresh(monthlyActivitySummaryProvider.notifier).getWorkingTimeSummary();
+                  ref.refresh(todayActivityProvider.notifier).getTodayActivity();
                   logger.recordLog(LoggerMessage.refreshWorkingTimeSummary, LogType.info);
                 },
                 child: const SingleChildScrollView(

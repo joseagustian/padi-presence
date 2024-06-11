@@ -8,7 +8,7 @@ import 'package:padi/core/utils/date_time_formatter.dart';
 import 'domains/usecases/monthly_activity_usecase.dart';
 import 'monthly_activity_provider.dart';
 
-class MonthlyActivitySummerState {
+class MonthlyActivitySummaryState {
   String standardWorkingDay;
   String employeeWorkingDay;
   String standardWorkingHour;
@@ -20,7 +20,7 @@ class MonthlyActivitySummerState {
   String leaveDay;
   bool isLoading = false;
 
-  MonthlyActivitySummerState({
+  MonthlyActivitySummaryState({
     required this.standardWorkingDay,
     required this.employeeWorkingDay,
     required this.standardWorkingHour,
@@ -33,7 +33,7 @@ class MonthlyActivitySummerState {
     required this.isLoading,
   });
 
-  MonthlyActivitySummerState copyWith({
+  MonthlyActivitySummaryState copyWith({
     String? standardWorkingDay,
     String? employeeWorkingDay,
     String? standardWorkingHour,
@@ -45,7 +45,7 @@ class MonthlyActivitySummerState {
     String? leaveDay,
     bool? isLoading,
   }) {
-    return MonthlyActivitySummerState(
+    return MonthlyActivitySummaryState(
       standardWorkingDay: standardWorkingDay ?? this.standardWorkingDay,
       employeeWorkingDay: employeeWorkingDay ?? this.employeeWorkingDay,
       standardWorkingHour: standardWorkingHour ?? this.standardWorkingHour,
@@ -61,11 +61,11 @@ class MonthlyActivitySummerState {
 
 }
 
-class MonthlyActivitySummaryProvider extends StateNotifier<MonthlyActivitySummerState> {
+class MonthlyActivitySummaryProvider extends StateNotifier<MonthlyActivitySummaryState> {
 
   final MonthlyActivityUseCase _monthlyActivityUseCase;
 
-  MonthlyActivitySummaryProvider(this._monthlyActivityUseCase) : super(MonthlyActivitySummerState(
+  MonthlyActivitySummaryProvider(this._monthlyActivityUseCase) : super(MonthlyActivitySummaryState(
     standardWorkingDay: '0 Hari',
     employeeWorkingDay: '0 Hari',
     standardWorkingHour: '00j 00m',
@@ -127,7 +127,7 @@ class MonthlyActivitySummaryProvider extends StateNotifier<MonthlyActivitySummer
 
 }
 
-final monthlyActivitySummaryProvider = StateNotifierProvider<MonthlyActivitySummaryProvider, MonthlyActivitySummerState>((ref) {
+final monthlyActivitySummaryProvider = StateNotifierProvider<MonthlyActivitySummaryProvider, MonthlyActivitySummaryState>((ref) {
   return MonthlyActivitySummaryProvider(
     ref.watch(monthlyActivityUseCaseProvider),
   );

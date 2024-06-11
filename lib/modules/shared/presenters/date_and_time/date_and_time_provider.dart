@@ -15,6 +15,12 @@ class DateTimeProvider {
     return formatter.format(now);
   }
 
+  String getLocalTime() {
+    var formatter = DateFormat('HH:mm', 'id_ID');
+    final now = this.now();
+    return formatter.format(now);
+  }
+
   String getMonthAndYear() {
     var formatter = DateFormat('MMMM y', 'id_ID');
     final now = this.now();

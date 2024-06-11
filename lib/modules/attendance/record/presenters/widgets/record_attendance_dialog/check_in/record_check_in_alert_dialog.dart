@@ -13,9 +13,11 @@ import 'package:padi/modules/shared/presenters/location/user/user_location_state
 import 'package:padi/modules/shared/presenters/maps/attendance_maps_widget.dart';
 
 class RecordCheckInAlertDialog extends ConsumerWidget {
+
   const RecordCheckInAlertDialog({
     super.key
   });
+
 
   @override
   Widget build(BuildContext context, ref) {

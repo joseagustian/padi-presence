@@ -2,6 +2,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:padi/core/constants/strings.dart';
 import 'package:padi/core/utils/app_logger.dart';
+import 'package:padi/core/utils/date_time_formatter.dart';
 import 'package:padi/core/utils/shared_preferences.dart';
 import 'package:padi/modules/attendance/record/domains/entities/attendance_check_in_entity.dart';
 import 'package:padi/modules/attendance/record/domains/usecases/attendance_check_in_usecase.dart';
@@ -38,6 +39,7 @@ class AttendanceCheckInProvider {
     logger.recordLog(LoggerMessage.sendCheckInRequest, LogType.info);
     try {
       final attendanceCheckIn = await attendanceCheckInUseCase.checkIn(body);
+      prefs.savePrefs(PrefsKey.attendanceCheckInTime, getTimeFromAttendanceTimestamp(body.checkInTime));
       isLoading = false;
       return attendanceCheckIn;
     } catch (e) {

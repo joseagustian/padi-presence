@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:padi/modules/shared/presenters/date_and_time/stream_time_and_date_provider.dart';
 
+import '../../today_activity_provider.dart';
+
 class TodayActivityWidget extends ConsumerWidget {
   const TodayActivityWidget({super.key});
 
   @override
   Widget build(BuildContext context, ref) {
     final state = ref.watch(streamDateAndTimeProvider);
+    final todayActivityState = ref.watch(todayActivityProvider);
     return Container(
       margin: const EdgeInsets.only(
           top: 20,
@@ -56,7 +59,7 @@ class TodayActivityWidget extends ConsumerWidget {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    '--:--',
+                    todayActivityState.checkInTime,
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -74,7 +77,7 @@ class TodayActivityWidget extends ConsumerWidget {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    '--:--',
+                    todayActivityState.checkOutTime,
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -92,7 +95,7 @@ class TodayActivityWidget extends ConsumerWidget {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    '--:--',
+                    todayActivityState.workingHours,
                     style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,

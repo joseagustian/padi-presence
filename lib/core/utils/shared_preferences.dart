@@ -16,6 +16,9 @@ class PrefsKey {
   static const String isCheckInReminderShown = 'isCheckInReminderShown';
   static const String isCheckOutReminderShown = 'isCheckOutReminderShown';
   static const String notificationLogs = 'notificationLogs';
+  static const String attendanceCheckInTime = 'attendanceCheckInTime';
+  static const String attendanceCheckOutTime = 'attendanceCheckOutTime';
+  static const String attendanceWorkingHours = 'attendanceWorkingHours';
 }
 
 

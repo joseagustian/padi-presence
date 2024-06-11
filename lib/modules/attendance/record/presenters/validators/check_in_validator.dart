@@ -9,6 +9,8 @@ import 'package:padi/modules/shared/presenters/alert_dialog/messenger_alert_dial
 import 'package:padi/modules/shared/presenters/date_and_time/date_and_time_provider.dart';
 import 'package:padi/modules/shared/presenters/location/user/user_location_state_provider.dart';
 
+import '../../../../../core/utils/shared_preferences.dart';
+
 void validateCheckIn(
     BuildContext context,
     DateTimeProvider dateTimeProvider,
@@ -18,10 +20,13 @@ void validateCheckIn(
     void Function() onCheckInSuccess,
 ) {
 
+  SharedPreferencesUtils prefs = SharedPreferencesUtils();
+
   final coordinates = userLocationStateNotifier.getUserCoordinates();
 
 
   String timestamp = dateTimeProvider.getTimestamp();
+  String localTime = dateTimeProvider.getLocalTime();
 
   final lat = coordinates['latitude'].toString();
   final long = coordinates['longitude'].toString();
@@ -32,8 +37,6 @@ void validateCheckIn(
 
   final field = Validator.validateCheckIn(timestamp, lat, long, status);
   final workTypeField = Validator.validateWorkType(workType);
-
-
 
   if (workTypeField != null) {
     bool error = false;
@@ -80,6 +83,8 @@ void validateCheckIn(
 
 
     onCheckInSuccess();
+
+    prefs.savePrefs(PrefsKey.attendanceCheckInTime, localTime);
 
     showMessengerAlertDialog(
         context,
