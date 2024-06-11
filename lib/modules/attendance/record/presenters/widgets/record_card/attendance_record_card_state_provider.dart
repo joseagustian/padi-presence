@@ -45,6 +45,9 @@ class AttendanceRecordCardNotifier extends StateNotifier<AttendanceRecordCardSta
         await prefs.savePrefs(PrefsKey.isCheckedIn, false);
         await prefs.savePrefs(PrefsKey.isCheckedOut, false);
         await prefs.savePrefs(PrefsKey.lastAttendanceTime, '');
+        await prefs.savePrefs(PrefsKey.attendanceCheckInTime, '');
+        await prefs.savePrefs(PrefsKey.attendanceCheckOutTime, '');
+        await prefs.savePrefs(PrefsKey.attendanceWorkingHours, '');
       }
 
     }
