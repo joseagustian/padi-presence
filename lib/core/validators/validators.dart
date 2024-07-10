@@ -92,6 +92,13 @@ class Validator {
     return null;
   }
 
+  static String? validateOfficeLocationSelection(String? value) {
+    if (value == null || value.isEmpty) {
+      return Strings.pleaseSelectOfficeLocation;
+    }
+    return null;
+  }
+
   static String? validateDivisionSelection(String? value) {
     if (value == null || value.isEmpty) {
       return Strings.pleaseSelectDivision;

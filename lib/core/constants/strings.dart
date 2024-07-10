@@ -44,6 +44,8 @@ class Strings {
   static const String selectBirthDate = 'Pilih tanggal lahir anda.';
   static const String position = 'Jabatan';
   static const String selectPosition = 'Pilih jabatan anda.';
+  static const String officeLocation = 'Lokasi Kantor';
+  static const String selectOfficeLocation = 'Pilih lokasi kantor';
   static const String confirmationPassword = 'Konfirmasi Kata Sandi';
   static const String inputConfirmationPassword = 'Masukkan konfirmasi kata sandi.';
   static const String recoverPasswordGreetings = 'Tidak Bisa Masuk?';
@@ -195,6 +197,7 @@ class Strings {
   static const String failToLoadSecurityQuestion = 'Gagal memuat daftar pertanyaan.';
 
   static const String failToLoadEmployeePosition = 'Gagal memuat daftar jabatan.';
+  static const String failToLoadOfficeLocation = 'Gagal memuat daftar lokasi kantor.';
 
   static const String failToLoadJobDivision = 'Gagal memuat daftar divisi.';
   static const String registrationFailed = 'Gagal Mendaftar.';
@@ -238,6 +241,8 @@ class Strings {
 
   static const String pleaseSelectBirthDate = 'Mohon Isi Tanggal Lahir.';
   static const String ageNotEnough = 'Usia Anda Kurang Dari 18 Tahun.';
+
+  static const String pleaseSelectOfficeLocation = 'Mohon Pilih Lokasi Kantor.';
 
   static const String pleaseSelectPosition = 'Mohon Pilih Jabatan.';
 

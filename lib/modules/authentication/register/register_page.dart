@@ -23,6 +23,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   final birthDateController = TextEditingController();
   final divisionController = TextEditingController();
   final positionController = TextEditingController();
+  final officeLocationController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmationPasswordController = TextEditingController();
 
@@ -45,6 +46,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                     birthDateController: birthDateController,
                     divisionController: divisionController,
                     positionController: positionController,
+                    officeLocationController: officeLocationController,
                     passwordController: passwordController,
                     confirmationPasswordController: confirmationPasswordController,
                   ),
@@ -67,6 +69,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                 securityQuestionController,
                 securityAnswerController,
                 birthDateController,
+                officeLocationController,
                 divisionController,
                 positionController,
                 passwordController,

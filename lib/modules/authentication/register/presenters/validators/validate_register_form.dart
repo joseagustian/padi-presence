@@ -15,6 +15,7 @@ void validateRegisterForm(
     TextEditingController securityQuestionController,
     TextEditingController securityAnswerController,
     TextEditingController birthDateController,
+    TextEditingController officeLocationController,
     TextEditingController divisionController,
     TextEditingController positionController,
     TextEditingController passwordController,
@@ -27,6 +28,7 @@ void validateRegisterForm(
   final securityQuestion = securityQuestionController.text;
   final securityQuestionAnswer = securityAnswerController.text;
   final dateOfBirth = birthDateController.text;
+  final officeLocation = officeLocationController.text;
   final division = divisionController.text;
   final jobPosition = positionController.text;
   final password = passwordController.text;
@@ -39,6 +41,7 @@ void validateRegisterForm(
     'Security Question': Validator.validateSecurityQuestionSelection(securityQuestion),
     'Security Question Answer': Validator.validateSecurityQuestionAnswer(securityQuestionAnswer),
     'Date of Birth': Validator.validateBirthDateSelection(dateOfBirth),
+    'Office Location': Validator.validateOfficeLocationSelection(officeLocation),
     'Division': Validator.validateDivisionSelection(division),
     'Job Position': Validator.validatePositionSelection(jobPosition),
     'Password': Validator.validateNewPassword(password),
@@ -79,6 +82,7 @@ void validateRegisterForm(
     securityQuestion: securityQuestion,
     securityQuestionAnswer: securityQuestionAnswer,
     dateOfBirth: dateOfBirth,
+    locationId: officeLocation,
     jobPosition: jobPosition,
     password: password,
   );

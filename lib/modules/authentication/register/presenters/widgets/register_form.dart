@@ -8,6 +8,7 @@ import 'package:padi/modules/authentication/widgets/auth_textfield.dart';
 import 'package:padi/modules/shared/presenters/date_picker/date_picker_dialog.dart';
 import 'package:padi/modules/shared/presenters/employee_position/employee_position_provider.dart';
 import 'package:padi/modules/shared/presenters/job_division/job_division_provider.dart';
+import 'package:padi/modules/shared/presenters/location/office/all_office_location_provider.dart';
 import 'package:padi/modules/shared/presenters/security_question/security_question_provider.dart';
 
 class RegisterForm extends ConsumerStatefulWidget {
@@ -20,6 +21,7 @@ class RegisterForm extends ConsumerStatefulWidget {
     required this.birthDateController,
     required this.divisionController,
     required this.positionController,
+    required this.officeLocationController,
     required this.passwordController,
     required this.confirmationPasswordController,
   });
@@ -31,6 +33,7 @@ class RegisterForm extends ConsumerStatefulWidget {
   final TextEditingController birthDateController;
   final TextEditingController divisionController;
   final TextEditingController positionController;
+  final TextEditingController officeLocationController;
   final TextEditingController passwordController;
   final TextEditingController confirmationPasswordController;
   @override
@@ -42,6 +45,7 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
   final _securityQuestionDropdownKey = GlobalKey<FormFieldState>();
   final _jobDivisionDropdownKey = GlobalKey<FormFieldState>();
   final _employeePositionDropdownKey = GlobalKey<FormFieldState>();
+  final _officeLocationDropdownKey = GlobalKey<FormFieldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -312,6 +316,62 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                         isError: ref.watch(employeePositionProvider(widget.divisionController.text)).error != null,
                         prefixIcon: Icons.person_search_rounded
                     ),
+                    const SizedBox(height: 20),
+                    //----------------- Office Location Dropdown -----------------//
+                    Text(
+                      Strings.officeLocation,
+                      style: TextStyle(
+                        color: Colors.blueGrey[900],
+                        fontFamily: 'Lato',
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    AuthDropdownForm(
+                        dropdownKey: _officeLocationDropdownKey,
+                        onTap: () {
+                          return ref.refresh(allOfficeLocationProvider);
+                        },
+                        items: ref.watch(allOfficeLocationProvider).when(
+                            data: (officeLocations) {
+                              return officeLocations.data.map((location) {
+                                return DropdownMenuItem(
+                                  onTap: () {
+                                    widget.officeLocationController.text = location.id.toString();
+                                  },
+                                  value: location.id,
+                                  child: Text(location.officeName),
+                                );
+                              }).toList();
+                            },
+                            loading: () => [],
+                            error: (e, s) => []
+                        ),
+                        onChanged: (value) {
+
+                        },
+                        value: null,
+                        hint: Text(
+                          ref.watch(allOfficeLocationProvider).isLoading ? Strings.loading
+                              : ref.watch(allOfficeLocationProvider).error != null ? Strings.failToLoadOfficeLocation
+                              : Strings.selectOfficeLocation,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Lato',
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        validator: (value) {
+                          Validator.validatePositionSelection(value);
+                          return null;
+                        },
+                        isLoading: ref.watch(allOfficeLocationProvider).isLoading,
+                        isError: ref.watch(allOfficeLocationProvider).error != null,
+                        prefixIcon: Icons.location_city_sharp
+                    ),
+                    //----------------- Office Location Dropdown -----------------//
                     const SizedBox(height: 20),
                     Text(
                       Strings.password,

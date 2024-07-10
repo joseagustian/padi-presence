@@ -24,6 +24,7 @@ class RegisterBodyRequest {
   String email;
   String securityQuestion;
   String dateOfBirth;
+  String locationId;
   String jobPosition;
   String securityQuestionAnswer;
   String password;
@@ -33,6 +34,7 @@ class RegisterBodyRequest {
     required this.email,
     required this.securityQuestion,
     required this.dateOfBirth,
+    required this.locationId,
     required this.jobPosition,
     required this.securityQuestionAnswer,
     required this.password
@@ -44,6 +46,7 @@ class RegisterBodyRequest {
       "email": email,
       "question": securityQuestion,
       "date_of_birth": dateOfBirth,
+      "location_id": locationId,
       "position": jobPosition,
       "reminder": securityQuestionAnswer,
       "password": password
