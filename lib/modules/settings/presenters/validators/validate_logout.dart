@@ -2,12 +2,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:padi/core/constants/strings.dart';
 import 'package:padi/core/data/database/repositories/padi_user_table_repository.dart';
-import 'package:padi/core/routes/router.dart';
 import 'package:padi/core/utils/shared_preferences.dart';
 import 'package:padi/modules/navigation_provider.dart';
 import 'package:padi/modules/settings/logout_provider.dart';
 import 'package:padi/modules/shared/presenters/alert_dialog/loading_alert_dialog.dart';
 import 'package:padi/modules/shared/presenters/alert_dialog/messenger_alert_dialog.dart';
+import 'package:restart/restart.dart';
 
 void validateLogout(
     BuildContext context,
@@ -31,8 +31,10 @@ void validateLogout(
 
     await prefs.clearPrefs();
     await padiUserAccountTableRepository.deletePadiUserAccount();
-    router.go('/login');
-    navigationState.setPosition(0);
+
+    await Future.delayed(const Duration(milliseconds: 100), () {
+      restartApp();
+    });
 
 
   }).catchError((e) {
@@ -47,4 +49,8 @@ void validateLogout(
         }
     );
   });
+}
+
+void restartApp() {
+  restart();
 }

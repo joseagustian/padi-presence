@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:padi/core/constants/strings.dart';
 import 'package:padi/modules/attendance/record/padi_scheduler_provider.dart';
 
 void validatePadiScheduler(

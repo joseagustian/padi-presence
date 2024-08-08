@@ -26,7 +26,7 @@ class AttendanceRecordCardNotifier extends StateNotifier<AttendanceRecordCardSta
   SharedPreferencesUtils prefs = SharedPreferencesUtils();
 
   AttendanceRecordCardNotifier() : super(
-      const AttendanceRecordCardState(type: AttendanceRecordCardButtonType.checkIn)
+      const AttendanceRecordCardState(type: AttendanceRecordCardButtonType.none)
   ) {
     _initializeState();
   }
@@ -55,23 +55,24 @@ class AttendanceRecordCardNotifier extends StateNotifier<AttendanceRecordCardSta
   }
 
   void _initializeState() async {
-
     _resetState();
 
     final isCheckedIn = await prefs.getPrefs(PrefsKey.isCheckedIn);
     final isCheckedOut = await prefs.getPrefs(PrefsKey.isCheckedOut);
+    final isTodayFinished = await prefs.getPrefs(PrefsKey.isTodayFinished);
 
-    if (isCheckedIn == null || isCheckedIn == false) {
-      state = state.copyWith(type: AttendanceRecordCardButtonType.checkIn);
-    } else if (isCheckedIn == true) {
-      state = state.copyWith(type: AttendanceRecordCardButtonType.checkOut);
-    }
-
-    if (isCheckedOut == true) {
+    if (isTodayFinished != null && isTodayFinished) {
       state = state.copyWith(type: AttendanceRecordCardButtonType.todayFinished);
+    } else if (isCheckedIn != null && isCheckedIn && (isCheckedOut == null || isCheckedOut == false)) {
+      state = state.copyWith(type: AttendanceRecordCardButtonType.checkOut);
+    } else if (isCheckedIn == null || isCheckedIn == false) {
+      state = state.copyWith(type: AttendanceRecordCardButtonType.checkIn);
+    } else {
+      state = state.copyWith(type: AttendanceRecordCardButtonType.none);
     }
 
   }
+
 
   void _updateAttendanceStatus(bool isCheckedIn) async {
 
@@ -91,7 +92,6 @@ class AttendanceRecordCardNotifier extends StateNotifier<AttendanceRecordCardSta
   }
 
   void setAttendanceButtonState() async {
-
     final isCheckedIn = await prefs.getPrefs(PrefsKey.isCheckedIn);
 
     if (isCheckedIn == null || isCheckedIn == false) {
@@ -99,7 +99,15 @@ class AttendanceRecordCardNotifier extends StateNotifier<AttendanceRecordCardSta
     } else {
       _updateAttendanceStatus(false);
     }
+  }
 
+  void setAttendanceButtonStateForCheckOut() async {
+    state = state.copyWith(type: AttendanceRecordCardButtonType.checkOut);
+  }
+
+  void setAttendanceButtonStateForFinished() async {
+    await prefs.savePrefs(PrefsKey.recentAttendanceId, null);
+    state = state.copyWith(type: AttendanceRecordCardButtonType.todayFinished);
   }
 
 }

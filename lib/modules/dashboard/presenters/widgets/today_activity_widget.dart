@@ -4,11 +4,16 @@ import 'package:padi/modules/shared/presenters/date_and_time/stream_time_and_dat
 
 import '../../today_activity_provider.dart';
 
-class TodayActivityWidget extends ConsumerWidget {
+class TodayActivityWidget extends ConsumerStatefulWidget {
   const TodayActivityWidget({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  ConsumerState<TodayActivityWidget> createState() => _TodayActivityWidgetState();
+}
+
+class _TodayActivityWidgetState extends ConsumerState<TodayActivityWidget> {
+  @override
+  Widget build(BuildContext context) {
     final state = ref.watch(streamDateAndTimeProvider);
     final todayActivityState = ref.watch(todayActivityProvider);
     return Container(

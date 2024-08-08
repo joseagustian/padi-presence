@@ -150,7 +150,6 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                             color: Colors.white,
                             fontFamily: 'Lato',
                             fontSize: 14,
-                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         validator: (value) {
@@ -251,7 +250,6 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                             color: Colors.white,
                             fontFamily: 'Lato',
                             fontSize: 14,
-                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         validator: (value) {
@@ -305,7 +303,6 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                             color: Colors.white,
                             fontFamily: 'Lato',
                             fontSize: 14,
-                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         validator: (value) {
@@ -360,7 +357,6 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                             color: Colors.white,
                             fontFamily: 'Lato',
                             fontSize: 14,
-                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         validator: (value) {

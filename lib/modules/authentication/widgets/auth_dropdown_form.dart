@@ -18,7 +18,7 @@ class AuthDropdownForm extends StatefulWidget {
   final GlobalKey<FormFieldState> dropdownKey;
   final List<DropdownMenuItem> items;
   final ValueChanged onChanged;
-  final  value;
+  final value;
   final Widget hint;
   final String? Function(dynamic)? validator;
   final bool isLoading;

@@ -115,6 +115,8 @@ class _CaptchaAlertDialogState extends ConsumerState<CaptchaAlertDialog> {
                   color: Colors.blueGrey[700],
                 ),
                 child: TextFormField(
+                  textAlignVertical: TextAlignVertical.center,
+                  textAlign: TextAlign.start,
                   controller: _captchaController,
                   keyboardType: TextInputType.number,
                   cursorColor: Colors.white,

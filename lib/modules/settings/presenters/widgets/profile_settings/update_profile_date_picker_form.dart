@@ -32,6 +32,8 @@ class _UpdateProfileDatePickerFormState extends State<UpdateProfileDatePickerFor
           widget.onTap();
         },
         child: TextFormField(
+          textAlignVertical: TextAlignVertical.center,
+          textAlign: TextAlign.start,
           enabled: false,
           controller: widget.controller,
           textInputAction: widget.textInputAction,

@@ -47,8 +47,8 @@ class AppLogAppBar extends ConsumerWidget {
                 MenuAnchor(
                   alignmentOffset: const Offset(-95, 20),
                   style: MenuStyle(
-                    padding: MaterialStateProperty.all(EdgeInsets.zero),
-                    surfaceTintColor: MaterialStateProperty.all(Colors.white),
+                    padding: WidgetStateProperty.all(EdgeInsets.zero),
+                    surfaceTintColor: WidgetStateProperty.all(Colors.white),
                   ),
                   builder: (context, MenuController controller, Widget? child) {
                     return InkWell(

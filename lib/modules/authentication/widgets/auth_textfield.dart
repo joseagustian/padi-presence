@@ -40,6 +40,8 @@ class _AuthTextFieldState extends State<AuthTextField> {
         color: Colors.blueGrey[700],
       ),
       child: TextFormField(
+        textAlignVertical: TextAlignVertical.center,
+        textAlign: TextAlign.start,
         controller: widget.controller,
         obscureText: obscureText,
         enabled: widget.enabled,

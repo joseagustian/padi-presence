@@ -2,7 +2,6 @@
 import 'dart:convert';
 
 import 'package:padi/core/configs/api_config.dart';
-import 'package:padi/core/constants/strings.dart';
 import 'package:padi/core/data/database/providers/padi_user_table_provider.dart';
 import 'package:padi/modules/attendance/record/infra/models/attendance_history_model.dart';
 import 'package:padi/modules/shared/presenters/date_and_time/date_and_time_provider.dart';

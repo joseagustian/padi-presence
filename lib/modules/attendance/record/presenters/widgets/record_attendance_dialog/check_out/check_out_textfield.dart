@@ -19,6 +19,8 @@ class _CheckOutTextFieldState extends State<CheckOutTextField> {
           color: Colors.blueGrey[700],
         ),
         child: TextFormField(
+          textAlignVertical: TextAlignVertical.center,
+          textAlign: TextAlign.start,
           controller: widget.activityController,
           keyboardType: TextInputType.text,
           cursorColor: Colors.white,

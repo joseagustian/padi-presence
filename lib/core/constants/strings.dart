@@ -11,11 +11,12 @@ class Strings {
   // General
   static const String appName = 'Padi Presence';
 
-  static const String appVersion = 'Versi 1.0 (2023)';
+  static const String appVersion = 'Versi 2.0.0 (2024)';
   static const String appDevelopedFor = 'Dikembangkan Untuk:';
   static const String appAgentPackageName = 'padi';
   static const String home = 'Beranda';
   static const String settings = 'Pengaturan';
+  static const String submission = 'Pengajuan';
   static const String welcome = 'Selamat Datang!';
   static const String pleaseLogin = 'Silahkan Masuk Untuk Melanjutkan.';
   static const String email = 'Email';
@@ -183,16 +184,28 @@ class Strings {
   static const String monthlySchedule = 'Jadwal Bulanan';
   static const String correction = 'Koreksi Kehadiran';
   static const String submitCorrectionData = 'PERBARUI';
+  static const String create = 'BUAT';
+  static const String createSubmission = 'Buat Pengajuan';
+  static const String submissionType = 'Tipe Pengajuan';
+  static const String selectSubmissionType = 'Pilih Tipe Pengajuan';
+  static const String submissionStartDate = 'Tanggal Mulai';
+  static const String selectSubmissionStartDate = 'Pilih Tanggal Mulai';
+  static const String submissionEndDate = 'Tanggal Selesai';
+  static const String selectSubmissionEndDate = 'Pilih Tanggal Selesai';
+  static const String submissionDescription = 'Keterangan';
+  static const String inputSubmissionDescription = 'Isi Keterangan Pengajuan';
+  static const String sendSubmission = 'KIRIM';
 
 
   // Error
-  static const String   noInternetConnection = 'Tidak Ada Koneksi Internet.';
+  static const String noInternetConnection = 'Tidak Ada Koneksi Internet.';
   static const String failToConnectToServer = 'Gagal Terhubung Ke Server.';
   static const String invalidPassword = 'Kata Sandi Salah.';
   static const String invalidEmail = 'Email Tidak Ditemukan.';
   static const String invalidEmailOrPassword = 'Email Atau Kata Sandi Salah.';
   static const String accountLoggedInAnotherDevice = 'Akun Sudah Ada Di Perangkat Lain.';
   static const String somethingWentWrong = 'Terjadi kesalahan.';
+  static const String internalServerError = 'Internal server error.';
 
   static const String failToLoadSecurityQuestion = 'Gagal memuat daftar pertanyaan.';
 

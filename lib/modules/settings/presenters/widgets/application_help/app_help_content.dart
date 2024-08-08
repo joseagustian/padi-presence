@@ -27,7 +27,7 @@ class AppHelpContent extends StatelessWidget {
                     Strings.companyName,
                 );
               },
-              overlayColor: MaterialStateProperty.all(Colors.transparent),
+              overlayColor: WidgetStateProperty.all(Colors.transparent),
               splashColor: Colors.transparent,
               splashFactory: NoSplash.splashFactory,
               child: const Padding(
@@ -56,7 +56,7 @@ class AppHelpContent extends StatelessWidget {
                   onTap: () {
                     UrlLauncherUtils.phoneCall(Strings.companyPhone);
                   },
-                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                  overlayColor: WidgetStateProperty.all(Colors.transparent),
                   splashColor: Colors.transparent,
                   splashFactory: NoSplash.splashFactory,
                   child: Text(
@@ -85,7 +85,7 @@ class AppHelpContent extends StatelessWidget {
                   onTap: () {
                     UrlLauncherUtils.email(Strings.companyEmail, Strings.padiAppProblem);
                   },
-                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                  overlayColor: WidgetStateProperty.all(Colors.transparent),
                   splashColor: Colors.transparent,
                   splashFactory: NoSplash.splashFactory,
                   child: Text(
@@ -114,7 +114,7 @@ class AppHelpContent extends StatelessWidget {
                   onTap: () {
                     UrlLauncherUtils.openUrl(Strings.companyWebsite);
                   },
-                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                  overlayColor: WidgetStateProperty.all(Colors.transparent),
                   splashColor: Colors.transparent,
                   splashFactory: NoSplash.splashFactory,
                   child: Text(

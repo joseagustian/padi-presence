@@ -33,6 +33,7 @@ class RecordCheckInAlertDialog extends ConsumerWidget {
       clipBehavior: Clip.antiAlias,
       content: ConstrainedBox(
         constraints: BoxConstraints(
+          minWidth: MediaQuery.of(context).size.width * 1,
           minHeight: MediaQuery.of(context).size.height * 0.3,
         ),
         child: Column(

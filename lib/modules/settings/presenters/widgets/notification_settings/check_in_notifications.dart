@@ -92,7 +92,7 @@ class _CheckInNotificationMenuState extends State<CheckInNotificationMenu> {
                         height: 20,
                         child: Switch(
                           value: widget.isCheckInNotificationEnabled,
-                          trackOutlineColor: MaterialStateProperty.all(Colors.blueGrey.shade100),
+                          trackOutlineColor: WidgetStateProperty.all(Colors.blueGrey.shade100),
                           inactiveTrackColor: Colors.blueGrey.shade100,
                           activeTrackColor: Colors.blueGrey.shade800,
                           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

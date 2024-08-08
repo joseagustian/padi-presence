@@ -119,3 +119,19 @@ String formatSummaryDays(String workingDay) {
   String formattedTotalDays = '$workingDay Hari';
   return formattedTotalDays;
 }
+
+String formatDateToIso8601WithMilliseconds(String date) {
+  DateTime dateTime = DateTime.parse(date.replaceFirst(' ', 'T'));
+
+  DateTime dateTimeWithMilliseconds = dateTime.add(const Duration(milliseconds: 842586)); // Example: Adding 123 milliseconds
+
+  String iso8601String = dateTimeWithMilliseconds.toIso8601String();
+
+
+  List<String> parts = iso8601String.split('.');
+  if (parts.length == 2) {
+    return '${parts[0]}.${parts[1].padRight(6, '0')}';
+  } else {
+    return iso8601String.padRight(23, '0');
+  }
+}

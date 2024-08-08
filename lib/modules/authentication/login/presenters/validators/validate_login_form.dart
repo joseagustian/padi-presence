@@ -3,6 +3,7 @@ import 'package:padi/core/constants/strings.dart';
 import 'package:padi/core/data/database/models/padi_user_model.dart';
 import 'package:padi/core/data/database/repositories/padi_user_table_repository.dart';
 import 'package:padi/core/routes/router.dart';
+import 'package:padi/core/utils/shared_preferences.dart';
 import 'package:padi/core/validators/validators.dart';
 import 'package:padi/modules/authentication/login/login_provider.dart';
 import 'package:padi/modules/shared/presenters/captcha_dialog/captcha_alert_dialog.dart';
@@ -18,6 +19,8 @@ void validateLoginForm(
     TextEditingController passwordController,
     LoginProvider loginProvider,
     ) {
+
+  SharedPreferencesUtils prefs = SharedPreferencesUtils();
 
   PadiUserAccountTableRepository padiUserAccountTableRepository = PadiUserAccountTableRepository();
 
@@ -56,6 +59,9 @@ void validateLoginForm(
           userOfficeLong: value.data!.officeLong.toString(),
           onProgressAttendanceId: value.data!.onProgressAttendanceId,
         );
+
+        prefs.savePrefs(PrefsKey.recentAttendanceId, value.data!.onProgressAttendanceId);
+        prefs.savePrefs(PrefsKey.shouldSetAttendanceButtonState, true);
 
         Navigator.of(context, rootNavigator: true).pop();
         padiUserAccountTableRepository.insertPadiUserAccount(padiUserAccountModel);

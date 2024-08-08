@@ -16,6 +16,7 @@ import 'package:padi/modules/settings/presenters/widgets/notification_settings/n
 import 'package:padi/modules/settings/presenters/widgets/profile_settings/profile_settings_page.dart';
 import 'package:padi/modules/settings/settings_page.dart';
 import 'package:padi/modules/splash/splash_screen.dart';
+import 'package:padi/modules/submission/submission_page.dart';
 
 
 final GlobalKey<NavigatorState> _rootNavigator = GlobalKey();
@@ -84,6 +85,15 @@ final GoRouter router = GoRouter(
                 parentNavigatorKey: _shellNavigator,
                 pageBuilder: (context, state) => NoTransitionPage(
                     child: AttendanceRecordPage(
+                        key: state.pageKey
+                    )
+                )
+            ),
+            GoRoute(
+                path: '/submission',
+                parentNavigatorKey: _shellNavigator,
+                pageBuilder: (context, state) => NoTransitionPage(
+                    child: SubmissionPage(
                         key: state.pageKey
                     )
                 )

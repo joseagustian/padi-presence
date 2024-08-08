@@ -11,6 +11,8 @@ import 'package:padi/modules/attendance/record/presenters/widgets/record_attenda
 import 'package:padi/modules/attendance/record/presenters/widgets/record_history_list/attendance_record_history_card.dart';
 import 'package:padi/modules/attendance/record/presenters/widgets/record_history_list/record_history_card.dart';
 
+import '../record_card/attendance_record_card_state_provider.dart';
+
 class AttendanceRecordHistoryList extends ConsumerWidget {
   const AttendanceRecordHistoryList({super.key});
 
@@ -65,6 +67,7 @@ class AttendanceRecordHistoryList extends ConsumerWidget {
                         showRecordCheckOutAlertDialog(
                             context,
                             '${history.data?[index].attendanceId}',
+                            CheckOutType.lateCheckOut,
                         );
                       },
                     );

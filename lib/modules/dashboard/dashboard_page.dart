@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:padi/core/utils/app_logger.dart';
+import 'package:padi/modules/attendance/record/attendance_by_id_provider.dart';
+import 'package:padi/modules/attendance/record/presenters/widgets/record_card/attendance_record_card_state_provider.dart';
 import 'package:padi/modules/dashboard/presenters/widgets/announcement_widget.dart';
 import 'package:padi/modules/dashboard/presenters/widgets/dashboard_appbar.dart';
 import 'package:padi/modules/dashboard/presenters/widgets/today_activity_widget.dart';
@@ -10,11 +12,19 @@ import 'package:padi/modules/shared/presenters/employee_data_card/employee_data_
 import 'presenters/widgets/monthly_activity_summary.dart';
 import 'working_time_summary_provider.dart';
 
-class DashboardPage extends ConsumerWidget {
+class DashboardPage extends ConsumerStatefulWidget {
   const DashboardPage({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  ConsumerState<DashboardPage> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends ConsumerState<DashboardPage> {
+
+
+  @override
+  Widget build(BuildContext context) {
+    ref.watch(getAttendanceDataByIDProvider("")).setLastAttendanceButton();
     final AppLogger logger = AppLogger();
     return Scaffold(
       body: SafeArea(
@@ -26,6 +36,7 @@ class DashboardPage extends ConsumerWidget {
                 backgroundColor: Colors.blueGrey.shade800,
                 color: Colors.blueGrey.shade100,
                 onRefresh: () async {
+                  ref.refresh(getAttendanceDataByIDProvider("")).setLastAttendanceButton();
                   ref.refresh(monthlyActivitySummaryProvider.notifier).getWorkingTimeSummary();
                   ref.refresh(todayActivityProvider.notifier).getTodayActivity();
                   logger.recordLog(LoggerMessage.refreshWorkingTimeSummary, LogType.info);

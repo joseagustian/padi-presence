@@ -35,6 +35,8 @@ class _AuthDatePickerFormState extends State<AuthDatePickerForm> {
           widget.onTap();
         },
         child: TextFormField(
+          textAlignVertical: TextAlignVertical.center,
+          textAlign: TextAlign.start,
           enabled: false,
           controller: widget.controller,
           textInputAction: widget.textInputAction,

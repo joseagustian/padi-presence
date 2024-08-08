@@ -2,8 +2,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class PrefsKey {
   static const String isLoggedIn = 'isLoggedIn';
+  static const String shouldSetAttendanceButtonState = 'shouldSetAttendanceButtonState';
   static const String isCheckedIn = 'isCheckedIn';
   static const String isCheckedOut = 'isCheckedOut';
+  static const String isTodayFinished = 'isTodayFinsihed';
   static const String lastAttendanceTime = 'lastAttendanceTime';
   static const String recentAttendanceId = 'recentAttendanceId';
   static const String applicationLogs = 'applicationLogs';

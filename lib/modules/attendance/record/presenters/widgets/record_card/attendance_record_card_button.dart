@@ -4,8 +4,8 @@ import 'package:padi/core/constants/strings.dart';
 enum AttendanceRecordCardButtonType {
   checkIn,
   checkOut,
-  todayFinished
-
+  todayFinished,
+  none
 }
 
 class AttendanceRecordCardButton extends StatelessWidget {
@@ -22,7 +22,7 @@ class AttendanceRecordCardButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return type == AttendanceRecordCardButtonType.none ? const SizedBox() : ElevatedButton(
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.symmetric(vertical: 5.0),
           backgroundColor: Colors.blueGrey.shade700,

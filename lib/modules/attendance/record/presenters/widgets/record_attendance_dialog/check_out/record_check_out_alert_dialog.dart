@@ -14,12 +14,19 @@ import 'package:padi/modules/shared/presenters/maps/attendance_maps_widget.dart'
 
 import 'check_out_radio_button.dart';
 
+enum CheckOutType {
+  checkOut,
+  lateCheckOut,
+}
+
 class RecordCheckOutAlertDialog extends ConsumerStatefulWidget {
   final String? attendanceId;
+  final CheckOutType checkOutType;
 
   const RecordCheckOutAlertDialog({
     super.key,
     this.attendanceId,
+    required this.checkOutType,
   });
 
   @override
@@ -33,8 +40,18 @@ class _RecordCheckOutAlertDialogState extends ConsumerState<RecordCheckOutAlertD
   Widget build(BuildContext context) {
 
     return AlertDialog(
+      surfaceTintColor: Colors.blueGrey.shade200,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+            Radius.circular(10.0)
+        ),
+      ),
+      insetPadding: const EdgeInsets.all(15.0),
+      contentPadding: const EdgeInsets.all(20.0),
+      clipBehavior: Clip.antiAlias,
       content: ConstrainedBox(
         constraints: BoxConstraints(
+          minWidth: MediaQuery.of(context).size.width * 1,
           minHeight: MediaQuery.of(context).size.height * 0.3,
         ),
         child: SingleChildScrollView(
@@ -70,14 +87,19 @@ class _RecordCheckOutAlertDialogState extends ConsumerState<RecordCheckOutAlertD
                   checkOutValidator(
                       context,
                       widget.attendanceId,
+                      widget.checkOutType,
                       ref.watch(dateTimeProvider),
                       ref.watch(userLocationStateProvider.notifier),
                       activityController,
                       ref.watch(radioButtonValueStateProvider.notifier),
                       ref.watch(attendanceCheckOutProvider),
                           () {
-                        ref.refresh(attendancesHistoryProvider).value;
-                        ref.read(recordCardStateProvider.notifier).setAttendanceButtonState();
+                        if (widget.checkOutType == CheckOutType.checkOut) {
+                          ref.refresh(attendancesHistoryProvider).value;
+                          ref.read(recordCardStateProvider.notifier).setAttendanceButtonState();
+                        } else {
+                          ref.refresh(attendancesHistoryProvider).value;
+                        }
                       }
                   );
                 },
@@ -94,12 +116,14 @@ class _RecordCheckOutAlertDialogState extends ConsumerState<RecordCheckOutAlertD
 void showRecordCheckOutAlertDialog(
     BuildContext context,
     String? attendanceId,
+    CheckOutType checkOutType,
     ) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return RecordCheckOutAlertDialog(
         attendanceId: attendanceId,
+        checkOutType: checkOutType,
       );
     },
   );

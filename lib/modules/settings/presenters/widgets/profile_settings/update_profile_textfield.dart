@@ -24,6 +24,8 @@ class _UpdateProfileTextFieldState extends State<UpdateProfileTextField> {
           color: Colors.blueGrey[700],
         ),
         child: TextFormField(
+          textAlignVertical: TextAlignVertical.center,
+          textAlign: TextAlign.start,
           controller: widget.updateProfileController,
           keyboardType: TextInputType.text,
           cursorColor: Colors.white,

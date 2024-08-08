@@ -96,7 +96,7 @@ class _CheckOutNotificationsMenuState extends State<CheckOutNotificationsMenu> {
                         height: 20,
                         child: Switch(
                           value: widget.isCheckOutNotificationEnabled,
-                          trackOutlineColor: MaterialStateProperty.all(Colors.blueGrey.shade100),
+                          trackOutlineColor: WidgetStateProperty.all(Colors.blueGrey.shade100),
                           inactiveTrackColor: Colors.blueGrey.shade100,
                           activeTrackColor: Colors.blueGrey.shade800,
                           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

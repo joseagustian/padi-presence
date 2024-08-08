@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:padi/modules/attendance/record/presenters/widgets/record_history_list/record_history_working_hours.dart';
 import 'package:padi/modules/attendance/record/presenters/widgets/record_history_list/record_history_attendance_date.dart';
 import 'package:padi/modules/attendance/record/presenters/widgets/record_history_list/record_history_attendance_time.dart';
+import 'package:padi/modules/shared/presenters/date_and_time/date_and_time_provider.dart';
 
 enum WorkType {
   wfo,
@@ -10,7 +12,7 @@ enum WorkType {
 
 }
 
-class AttendanceRecordHistoryCard extends StatelessWidget {
+class AttendanceRecordHistoryCard extends ConsumerWidget {
   final WorkType workType;
   final String date;
   final String day;
@@ -35,7 +37,8 @@ class AttendanceRecordHistoryCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final todayDate = ref.watch(twoDigitsDateTodayNumberProvider);
     return Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,7 +58,7 @@ class AttendanceRecordHistoryCard extends StatelessWidget {
           RecordHistoryAttendanceTime(
               checkInTime: checkInClock,
               checkOutTime: checkOutClock,
-              isCheckedOut: checkOutClock == '--:--' ? false : true,
+              isCheckedOut: checkOutClock == '--:--' && todayDate != date ? false : true,
               onCheckoutTap: onCheckoutTap
           ),
           const SizedBox(width: 15),

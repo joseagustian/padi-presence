@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:padi/core/constants/strings.dart';
+import 'package:padi/core/utils/shared_preferences.dart';
 import 'package:padi/modules/navigation_provider.dart';
 
 class AppScaffold extends ConsumerStatefulWidget {
@@ -18,6 +19,9 @@ class AppScaffold extends ConsumerStatefulWidget {
 }
 
 class _AppScaffoldState extends ConsumerState<AppScaffold> {
+
+  SharedPreferencesUtils prefs = SharedPreferencesUtils();
+
   @override
   Widget build(BuildContext context) {
     final position = ref.watch(navigationProvider);
@@ -61,6 +65,15 @@ class _AppScaffoldState extends ConsumerState<AppScaffold> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
+                  Bootstrap.pass
+              ),
+              activeIcon: Icon(
+                  Bootstrap.pass_fill
+              ),
+              label: Strings.submission,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
                   Bootstrap.gear
               ),
               activeIcon: Icon(
@@ -84,9 +97,13 @@ class _AppScaffoldState extends ConsumerState<AppScaffold> {
         GoRouter.of(context).go('/attendance-record');
         break;
       case 2:
+        GoRouter.of(context).go('/submission');
+        break;
+      case 3:
         GoRouter.of(context).go('/settings');
         break;
     }
   }
+
 }
 

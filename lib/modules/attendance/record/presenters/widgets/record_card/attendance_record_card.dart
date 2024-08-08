@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:padi/core/utils/shared_preferences.dart';
 import 'package:padi/modules/attendance/record/presenters/widgets/record_attendance_dialog/check_in/record_check_in_alert_dialog.dart';
 import 'package:padi/modules/attendance/record/presenters/widgets/record_attendance_dialog/check_out/record_check_out_alert_dialog.dart';
 import 'package:padi/modules/attendance/record/presenters/widgets/record_card/attendance_record_card_button.dart';
 import 'package:padi/modules/shared/presenters/alert_dialog/location_permission_dialog.dart';
 import 'package:padi/modules/shared/presenters/date_and_time/date_and_time_provider.dart';
 import 'package:padi/modules/shared/presenters/location/check_location_permission.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'attendance_record_card_date.dart';
 import 'attendance_record_card_state_provider.dart';
@@ -16,7 +18,9 @@ class AttendanceRecordCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
 
-    ref.watch(recordCardStateProvider);
+    SharedPreferencesUtils prefs = SharedPreferencesUtils();
+
+    ref.read(recordCardStateProvider);
 
     return Container(
       margin: const EdgeInsets.all(15),
@@ -56,12 +60,14 @@ class AttendanceRecordCard extends ConsumerWidget {
                   }
                 });
               },
-              onCheckOutTap: () {
+              onCheckOutTap: () async {
+                final lastAttendanceId = await prefs.getPrefs(PrefsKey.recentAttendanceId);
                 checkLocationPermission().then((value) => {
                   if (value == LocationPermissionStatus.permissionGranted) {
                     showRecordCheckOutAlertDialog(
                         context,
-                      null
+                      lastAttendanceId,
+                      CheckOutType.checkOut
                     )
                   } else {
                     showLocationPermissionAlertDialog(

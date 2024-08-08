@@ -4,6 +4,7 @@ import 'package:padi/core/validators/validators.dart';
 import 'package:padi/modules/attendance/record/attendance_check_out_provider.dart';
 import 'package:padi/modules/attendance/record/infra/models/attendance_check_out_model.dart';
 import 'package:padi/modules/attendance/record/presenters/widgets/record_attendance_dialog/attendance_radio_button_value_state_provider.dart';
+import 'package:padi/modules/attendance/record/presenters/widgets/record_attendance_dialog/check_out/record_check_out_alert_dialog.dart';
 import 'package:padi/modules/shared/presenters/alert_dialog/loading_alert_dialog.dart';
 import 'package:padi/modules/shared/presenters/alert_dialog/messenger_alert_dialog.dart';
 import 'package:padi/modules/shared/presenters/date_and_time/date_and_time_provider.dart';
@@ -14,6 +15,7 @@ import '../../../../../core/utils/shared_preferences.dart';
 void checkOutValidator(
     BuildContext context,
     String? attendanceId,
+    CheckOutType checkOutType,
     DateTimeProvider dateTimeProvider,
     UserLocationStateNotifier userLocationStateNotifier,
     TextEditingController activityController,
@@ -103,7 +105,7 @@ void checkOutValidator(
     Navigator.of(context, rootNavigator: true).pop();
     bool success = true;
 
-    prefs.savePrefs(PrefsKey.attendanceCheckOutTime, localTime);
+    if (checkOutType == CheckOutType.checkOut) prefs.savePrefs(PrefsKey.attendanceCheckOutTime, localTime);
 
     onCheckOutSuccess();
 

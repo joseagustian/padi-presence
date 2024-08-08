@@ -9,6 +9,7 @@ import 'package:padi/modules/attendance/record/presenters/widgets/record_history
 import 'package:padi/modules/attendance/record/presenters/widgets/record_history_detail/record_history_detail_work_time.dart';
 
 import '../record_history_list/attendance_record_history_card.dart';
+import 'correction_button_state_provider.dart';
 
 class RecordHistoryDetail extends ConsumerStatefulWidget {
   final String? attendanceId;
@@ -29,6 +30,10 @@ class _RecordHistoryDetailState extends ConsumerState<RecordHistoryDetail> {
     return Expanded(
       child: ref.watch(attendanceHistoryDetailProvider(widget.attendanceId!)).when(
           data: (historyDetail) {
+            Future.delayed(const Duration(microseconds: 10), () {
+              bool isFinished = historyDetail.data[0].checkOut?.checkOutTime != null;
+              ref.read(attendanceCorrectionButtonProvider.notifier).setFinished(isFinished);
+            });
             return RefreshIndicator(
               backgroundColor: Colors.blueGrey.shade800,
               color: Colors.blueGrey.shade100,

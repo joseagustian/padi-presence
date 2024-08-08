@@ -15,6 +15,12 @@ class DateTimeProvider {
     return formatter.format(now);
   }
 
+  String get2DigitsDateToday() {
+    var formatter = DateFormat('dd', 'id_ID');
+    final now = this.now();
+    return formatter.format(now);
+  }
+
   String getLocalTime() {
     var formatter = DateFormat('HH:mm', 'id_ID');
     final now = this.now();
@@ -65,6 +71,10 @@ final dateTodayProvider = Provider<String>((ref) {
 
 final timeNowProvider = Provider<String>((ref) {
   return ref.watch(dateTimeProvider).getTime();
+});
+
+final twoDigitsDateTodayNumberProvider = Provider<String>((ref) {
+  return ref.watch(dateTimeProvider).get2DigitsDateToday();
 });
 
 final monthNowProvider = Provider<String>((ref) {
