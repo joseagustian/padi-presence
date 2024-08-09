@@ -227,4 +227,55 @@ class Validator {
 
     return null;
   }
+
+  static String? validateSubmissionType(String? value) {
+    if (value == null || value.isEmpty) {
+      return Strings.submissionTypeEmpty;
+    }
+    return null;
+  }
+
+  static String? validateSubmissionStartDate(String? startDate, String? endDate) {
+
+    if (startDate == null || startDate.isEmpty) {
+      return Strings.submissionStartDateEmpty;
+    }
+
+    DateFormat dateFormat = DateFormat('dd-MM-yyyy');
+    DateTime start = dateFormat.parse(startDate);
+    DateTime end = dateFormat.parse(endDate!);
+
+    if (start.isAfter(end)) {
+      return Strings.submissionStartDateAfterEndDate;
+    }
+
+
+    return null;
+  }
+
+  static String? validateSubmissionEndDate(String? startDate, String? endDate) {
+
+    if (endDate == null || endDate.isEmpty) {
+      return Strings.submissionEndDateEmpty;
+    }
+
+    DateFormat dateFormat = DateFormat('dd-MM-yyyy');
+    DateTime start = dateFormat.parse(startDate!);
+    DateTime end = dateFormat.parse(endDate);
+
+    if (end.isBefore(start)) {
+      return Strings.submissionEndDateBeforeStartDate;
+    }
+
+    return null;
+  }
+
+  static String? validateSubmissionDescription(String? value) {
+    if (value == null || value.isEmpty) {
+      return Strings.submissionDescriptionEmpty;
+    } else if (value.length < 10) {
+      return Strings.submissionDescriptionShort;
+    }
+    return null;
+  }
 }

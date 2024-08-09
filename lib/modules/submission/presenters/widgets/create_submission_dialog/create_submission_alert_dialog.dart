@@ -4,6 +4,8 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:padi/core/constants/constant.dart';
 import 'package:padi/core/constants/strings.dart';
 import 'package:padi/modules/shared/presenters/date_picker/date_picker_dialog.dart';
+import 'package:padi/modules/submission/create_submission_provider.dart';
+import 'package:padi/modules/submission/presenters/validators/validate_create_submission_form.dart';
 import 'package:padi/modules/submission/presenters/widgets/create_submission_dialog/create_submission_dialog_button.dart';
 import 'package:padi/modules/submission/presenters/widgets/create_submission_dialog/create_submission_dropdown_form.dart';
 import 'package:padi/modules/submission/presenters/widgets/create_submission_dialog/create_submission_textfield.dart';
@@ -107,6 +109,8 @@ class _CreateSubmissionAlertDialogState extends ConsumerState<CreateSubmissionAl
                       context: context,
                       builder: (context) => SfDatePickerDialog(
                         controller: _submissionStartDateController,
+                        isDisabledDateBefore: false,
+                        isDisabledDateAfter: false,
                       ),
                     );
                   },
@@ -134,6 +138,8 @@ class _CreateSubmissionAlertDialogState extends ConsumerState<CreateSubmissionAl
                       context: context,
                       builder: (context) => SfDatePickerDialog(
                         controller: _submissionEndDateController,
+                        isDisabledDateBefore: false,
+                        isDisabledDateAfter: false,
                       ),
                     );
                   },
@@ -163,7 +169,14 @@ class _CreateSubmissionAlertDialogState extends ConsumerState<CreateSubmissionAl
                 const SizedBox(height: 20.0),
                 CreateSubmissionDialogButton(
                     onPressed: () {
-
+                      validateCreateSubmissionForm(
+                          context, 
+                          _submissionTypeController, 
+                          _submissionStartDateController, 
+                          _submissionEndDateController,
+                          _submissionDescriptionController, 
+                          ref.watch(createSubmissionProvider)
+                      );
                     },
                     title: Strings.sendSubmission
                 )

@@ -68,6 +68,8 @@ class _UpdateProfileFormState extends State<UpdateProfileForm> {
                       context: context,
                       builder: (context) => SfDatePickerDialog(
                         controller: widget.updateBirthDateController,
+                        isDisabledDateBefore: false,
+                        isDisabledDateAfter: true,
                       ),
                     );
                   },

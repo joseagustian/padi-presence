@@ -195,6 +195,12 @@ class Strings {
   static const String submissionDescription = 'Keterangan';
   static const String inputSubmissionDescription = 'Isi Keterangan Pengajuan';
   static const String sendSubmission = 'KIRIM';
+  static const String sendingSubmission = 'Mengirim Pengajuan';
+  static const String submissionPermitSuccess = 'Pengajuan Izin Berhasil Dibuat';
+  static const String submissionLeaveSuccess = 'Pengajuan Cuti Berhasil Dibuat';
+  static const String submissionSickSuccess = 'Pengajuan Izin Sakit Berhasil Dibuat';
+  static const String submissionOutOfTownSuccess = 'Pengajuan Dinas Luar Kota Berhasil Dibuat';
+  static const String submissionMoreThan12Days = 'Durasi Pengajuan Tidak Boleh Lebih Dari 12 Hari';
 
 
   // Error
@@ -278,5 +284,14 @@ class Strings {
   static const String employeeAddressInvalid = 'Format Alamat Lengkap Tidak Sesuai.';
   static const String employeeReligionEmpty = 'Mohon Pilih Agama.';
   static const String employeeReligionInvalid = 'Agama Tidak Sesuai.';
+
+  // --- CREATE SUBMISSION VALIDATOR ---
+  static const String submissionTypeEmpty = 'Mohon Pilih Tipe Pengajuan.';
+  static const String submissionStartDateEmpty = 'Mohon Pilih Tanggal Mulai.';
+  static const String submissionEndDateEmpty = 'Mohon Pilih Tanggal Selesai.';
+  static const String submissionDescriptionEmpty = 'Mohon Isi Keterangan Pengajuan.';
+  static const String submissionDescriptionShort = 'Mohon Isi Minimal 10 Karakter.';
+  static const String submissionStartDateAfterEndDate = 'Tanggal Mulai Harus Sebelum Tanggal Selesai.';
+  static const String submissionEndDateBeforeStartDate = 'Tanggal Selesai Harus Setelah Tanggal Mulai.';
 
 }

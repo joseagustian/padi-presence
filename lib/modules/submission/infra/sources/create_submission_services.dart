@@ -23,7 +23,7 @@ class CreateSubmissionServices {
       if (response.statusCode == 200) {
         return CreateSubmissionModel.fromJson(jsonDecode(response.body));
       } else if (response.statusCode == 400) {
-        throw Exception('Unauthorized');
+        return CreateSubmissionModel.fromJson(jsonDecode(response.body));
       } else {
         throw Exception('Failed to create submission');
       }

@@ -4,9 +4,13 @@ import 'package:intl/intl.dart';
 
 class SfDatePickerDialog extends StatelessWidget {
   final TextEditingController controller;
+  final bool isDisabledDateBefore;
+  final bool isDisabledDateAfter;
   const SfDatePickerDialog({
     super.key,
     required this.controller,
+    required this.isDisabledDateBefore,
+    required this.isDisabledDateAfter,
   });
 
   @override
@@ -26,13 +30,15 @@ class SfDatePickerDialog extends StatelessWidget {
         height: MediaQuery.of(context).size.height * 0.4,
         width: MediaQuery.of(context).size.width,
         child: SfDateRangePicker(
+          enablePastDates: isDisabledDateBefore,
+          backgroundColor: Colors.white,
           view: DateRangePickerView.month,
           monthViewSettings: DateRangePickerMonthViewSettings(
             firstDayOfWeek: 7,
             viewHeaderStyle: DateRangePickerViewHeaderStyle(
               textStyle: TextStyle(
                 color: Colors.blueGrey[900],
-                fontSize: 16,
+                fontSize: 12,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -43,6 +49,7 @@ class SfDatePickerDialog extends StatelessWidget {
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
+            backgroundColor: Colors.white,
           ),
           selectionMode: DateRangePickerSelectionMode.single,
           initialDisplayDate: controller.text.isNotEmpty

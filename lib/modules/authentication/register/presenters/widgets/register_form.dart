@@ -197,6 +197,8 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                             context: context,
                             builder: (context) => SfDatePickerDialog(
                               controller: widget.birthDateController,
+                              isDisabledDateBefore: false,
+                              isDisabledDateAfter: true,
                             ),
                           );
                         },
